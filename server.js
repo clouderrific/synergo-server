@@ -1,4 +1,6 @@
-const server = require('http').createServer();
+var express = require('express');
+var app = express();
+const server = require('http').createServer(app);
 const io = require('socket.io')(server, { perMessageDeflate :false });
 
 const PORT = process.env.PORT || 3001;
@@ -8,6 +10,10 @@ let rooms = [];
 let emitClients = () => {
   io.emit('clients', rooms);
 }
+
+io.configure(function() {
+  io.set('transports', ['websocket']);
+});
 
 io.on('connection', socket => {
   emitClients();
