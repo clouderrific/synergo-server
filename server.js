@@ -11,10 +11,6 @@ let emitClients = () => {
   io.emit('clients', rooms);
 }
 
-io.configure(function() {
-  io.set('transports', ['websocket']);
-});
-
 io.on('connection', socket => {
   emitClients();
   socket.on('register', client => {
