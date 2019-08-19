@@ -34,8 +34,7 @@ io.on('connection', socket => {
   });
 
   socket.on('clearRooms', () => {
-    
-    clients = [];
+    rooms = [];
     emitClients();
   });
 
