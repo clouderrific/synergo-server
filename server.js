@@ -1,10 +1,12 @@
 const server = require('http').createServer();
 const io = require('socket.io')(server, { perMessageDeflate :false });
 
-let clients = [];
+const PORT = process.env.PORT || 3001;
+
+let rooms = [];
 
 let emitClients = () => {
-  io.emit('clients', clients);
+  io.emit('clients', rooms);
 }
 
 io.serveClient('origins', 'http://www.pivotally.com:80 https://www.pivotally.com:443 http://pivotally.com:80 https://pivotally.com:443')
@@ -12,15 +14,15 @@ io.serveClient('origins', 'http://www.pivotally.com:80 https://www.pivotally.com
 io.on('connection', socket => {
   emitClients();
   socket.on('register', client => {
-      let pos = clients.length;
+      let pos = rooms.length;
       let notFound = true;
       while(pos--) {
-        if (clients[pos].id === client.id) {
+        if (rooms[pos].id === client.id) {
           notFound = false;
         }
       }
       if (notFound) {
-        clients.push(client);
+        rooms.push(client);
       }
       socket.join(client.id);
       emitClients();
@@ -42,4 +44,4 @@ io.on('connection', socket => {
   });
 });
 
-server.listen(3001);
+server.listen(PORT);
