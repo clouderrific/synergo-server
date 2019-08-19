@@ -9,8 +9,6 @@ let emitClients = () => {
   io.emit('clients', rooms);
 }
 
-io.serveClient('origins', 'http://www.pivotally.com:80 https://www.pivotally.com:443 http://pivotally.com:80 https://pivotally.com:443')
-
 io.on('connection', socket => {
   emitClients();
   socket.on('register', client => {
