@@ -42,4 +42,4 @@ io.on('connection', socket => {
   });
 });
 
-(process.env.NODE_ENV === 'production') ? server.listen(80) : server.listen(3001);
+server.listen(3001);
