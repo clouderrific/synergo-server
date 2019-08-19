@@ -1,0 +1,22 @@
+{
+  "name": "synergo-server",
+  "version": "1.0.0",
+  "description": "Signaling server for Synergo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "synergo",
+    "signalling",
+    "webrtc",
+    "p2p"
+  ],
+  "author": "Pablo Sarabia",
+  "license": "MIT",
+  "dependencies": {
+    "http": "0.0.0",
+    "socket.io": "^2.2.0"
+  }
+}
